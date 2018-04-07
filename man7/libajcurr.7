@@ -1,0 +1,71 @@
+.TH LIBAJCURR 7 2018-04-04 "Libajcurr 0.1" "Libajcurr manual"
+.SH NAME
+libajcurr, ajcurrenc, ajcurrdec \- Adjust's one byte currency type
+.SH SYNOPSIS
+.nf
+#include <ajcurr.h>
+.PP
+.RI "ajcurr ajcurrenc(const char *" code );
+.RI "const char *ajcurrdec(ajcurr " curr );
+.fi
+.SH DESCRIPTION
+The
+.B libajcurr
+library implements a one byte currency type. Not all of the world's currencies
+are supported, only the ones Adjust can handle.
+.PP
+The
+.I <ajcurr.h>
+header defines the type:
+.IP \fBajcurr\fP 12
+A single byte holding a currency code as encoded by the library. The range of
+valid values is contiguous, starts at 1 and ends at AJCURRMAX inclusive. A value
+of 0 indicates an invalid or unknown code.
+.PP
+The
+.I <ajcurr.h>
+header defines the macro:
+.IP AJCURRMAX 12
+Maximum supported
+.B ajcurr
+value.
+.PP
+The
+.B ajcurrenc
+function encodes a currency code. It takes a pointer to a C string
+holding a three-letter ISO 4217 currency code (e.g. "EUR") and returns a value
+of
+.B ajcurr
+type that corresponds to that currency. If the code is unsupported, invalid, a
+null pointer, or is not a suitably-sized C string, the function returns 0. This
+function is case-insensitive.
+.PP
+The
+.B ajcurrdec
+function decodes a value of
+.B ajcurr
+type into a three-letter currency code. It returns a pointer to a
+statically-allocated string holding the equivalent currency code. If the value
+is unsupported (0 or larger than AJCURRMAX), the function returns a null
+pointer.
+.SH RETURN VALUES
+.B Ajcurrenc
+returns an encoded currency code or 0.
+.PP
+.B Ajcurrdec
+returns a pointer to a four-byte statically-allocated C string holding a
+three-letter currency code or a null pointer.
+.SH COPYRIGHT
+2018 Adjust, Wiktor W Brodlo <wiktor@adjust.com>
+
+Permission to use, copy, modify, and/or distribute this software for any purpose
+with or without fee is hereby granted, provided that the above copyright notice
+and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND
+FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS
+OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
+TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF
+THIS SOFTWARE.

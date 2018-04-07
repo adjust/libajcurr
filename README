@@ -1,0 +1,24 @@
+libajcurr - Adjust's one byte currency type
+
+Mostly useful for pg-currency and projects that need to handle the datatype it
+provides.
+
+Compatible with any POSIX.1-2008 compliant system.
+
+To build, run make.
+To test, run make test.
+To install, run make install.
+The LIBPATH, INCPATH, MANPATH macros control where should the library archive,
+the header, and the manual page go, respectively. By default these are set to
+/lib, /usr/include, /usr/share/man, respectively.
+
+For usage documentation, see the manpage (man man7/ajcurr.7 from this
+directory or man libajcurr if installed).
+
+The supported currency codes are in the codes.h file. To add a currency, APPEND
+the code, wrapped in double quotes, followed by a comma, to this file.
+For example:
+
+	"EUR",
+
+This file may only contain whitespace and suitably formatted currency codes.

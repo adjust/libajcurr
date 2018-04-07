@@ -1,0 +1,5 @@
+#!/bin/sh
+
+echo "#define AJCURRMAX " $(wc -w < "$2")
+echo
+cat "$1"
